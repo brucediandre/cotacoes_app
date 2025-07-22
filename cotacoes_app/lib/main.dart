@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'api_service.dart';
+import 'details_page.dart'; // Tela de detalhes
 
 void main() {
   runApp(CotacoesApp());
@@ -50,12 +51,19 @@ class _HomePageState extends State<HomePage> {
               itemBuilder: (context, index) {
                 String moeda = moedas[index];
                 double valor = rates[moeda].toDouble();
+
                 return ListTile(
                   leading: Icon(Icons.monetization_on),
                   title: Text(moeda),
                   subtitle: Text('Valor: $valor'),
                   onTap: () {
-                    // Navegação virá no Dia 3
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            DetailsPage(moeda: moeda, valor: valor),
+                      ),
+                    );
                   },
                 );
               },
