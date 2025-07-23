@@ -11,7 +11,19 @@ class CotacoesApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'App de Cotações',
-      theme: ThemeData(primarySwatch: Colors.indigo),
+      theme: ThemeData(
+        useMaterial3: true,
+        colorSchemeSeed: Colors.indigo,
+        scaffoldBackgroundColor: Colors.grey[100],
+        cardTheme: CardThemeData(
+          color: Colors.white,
+          elevation: 2,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
+          ),
+        ),
+        textTheme: TextTheme(bodyMedium: TextStyle(fontSize: 16)),
+      ),
       home: HomePage(),
     );
   }
@@ -52,19 +64,36 @@ class _HomePageState extends State<HomePage> {
                 String moeda = moedas[index];
                 double valor = rates[moeda].toDouble();
 
-                return ListTile(
-                  leading: Icon(Icons.monetization_on),
-                  title: Text(moeda),
-                  subtitle: Text('Valor: $valor'),
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) =>
-                            DetailsPage(moeda: moeda, valor: valor),
-                      ),
-                    );
-                  },
+                return Card(
+                  margin: EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                  child: ListTile(
+                    contentPadding: EdgeInsets.symmetric(
+                      horizontal: 16,
+                      vertical: 10,
+                    ),
+                    leading: Icon(
+                      Icons.currency_exchange,
+                      color: Colors.indigo,
+                    ),
+                    title: Text(
+                      moeda,
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                    subtitle: Text('Valor: $valor'),
+                    trailing: Icon(Icons.arrow_forward_ios, size: 16),
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => DetailsPage(
+                            moeda: moeda,
+                            valor: valor,
+                            rates: rates,
+                          ),
+                        ),
+                      );
+                    },
+                  ),
                 );
               },
             );
