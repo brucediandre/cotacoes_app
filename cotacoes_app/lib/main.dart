@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'api_service.dart';
-import 'details_page.dart'; // Tela de detalhes
+import 'details_page.dart';
 
 void main() {
   runApp(CotacoesApp());
@@ -11,6 +11,7 @@ class CotacoesApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'App de Cotações',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         useMaterial3: true,
         colorSchemeSeed: Colors.indigo,
@@ -24,7 +25,51 @@ class CotacoesApp extends StatelessWidget {
         ),
         textTheme: TextTheme(bodyMedium: TextStyle(fontSize: 16)),
       ),
-      home: HomePage(),
+      home: WelcomePage(),
+    );
+  }
+}
+
+class WelcomePage extends StatefulWidget {
+  @override
+  _WelcomePageState createState() => _WelcomePageState();
+}
+
+class _WelcomePageState extends State<WelcomePage> {
+  @override
+  void initState() {
+    super.initState();
+    // Após 3 segundos, navega para a HomePage
+    Future.delayed(Duration(seconds: 3), () {
+      Navigator.of(
+        context,
+      ).pushReplacement(MaterialPageRoute(builder: (_) => HomePage()));
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(Icons.currency_exchange, size: 80, color: Colors.indigo),
+            SizedBox(height: 20),
+            Text(
+              'Bem-vindo ao App de Cotações!',
+              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+            ),
+            SizedBox(height: 12),
+            Text(
+              'Aguarde enquanto carregamos os dados...',
+              style: TextStyle(fontSize: 16),
+            ),
+            SizedBox(height: 40),
+            CircularProgressIndicator(color: Colors.indigo),
+          ],
+        ),
+      ),
     );
   }
 }
