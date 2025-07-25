@@ -27,7 +27,7 @@ Um aplicativo desenvolvido em Flutter que exibe cotações de moedas em tempo re
 * Android Studio / VS Code
 * Git e GitHub
 
-## Instruções para Executar o Cotações App
+## Instruções para Executar o Cotações App no Linux
 
 Para clonar e executar o projeto, siga os passos abaixo:
 
@@ -44,4 +44,42 @@ flutter pub get
 # Execute no dispositivo desejado (emulador, web, etc)
 flutter run -d chrome
 ```
-## Capituras de Telas
+## Instruções para Executar o Cotações App no Windowns
+
+Para clonar e executar o projeto, siga os passos abaixo:
+
+###  1. Pré-requisitos
+
+Antes de tudo, certifique-se de que:
+
+- Você tem o **Flutter** instalado no seu PC ([guia de instalação para Windows](https://docs.flutter.dev/get-started/install/windows)).
+- Você tem o **Visual Studio** instalado com a carga de trabalho **"Desenvolvimento de Desktop com C++"**.
+- O canal do Flutter está como **stable** e o suporte ao Windows está habilitado:
+
+```
+flutter doctor
+
+
+```
+### 2. Executar em Modo de Desenvolvimento (com hot reload)
+Para rodar o aplicativo diretamente no seu sistema Windows durante o desenvolvimento:
+```
+# Clone o repositório do projeto
+git clone https://github.com/seu-usuario/cotacoes_app.git
+
+# Acesse a pasta do projeto
+cd cotacoes_app
+
+# Instale as dependências
+flutter pub get
+
+# Execute no Windows
+flutter run -d windows
+```
+## Autor (a)
+Desenvolvido por Diandre Bruce
+
+Desafio técnico para a Talent Lab - 2025
+
+## Licença
+Este projeto está sob a licença MIT.
